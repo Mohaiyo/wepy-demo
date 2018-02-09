@@ -1,4 +1,4 @@
-<style lang="less">
+<style lang="scss">
 .container {
   height: 100%;
   display: flex;
@@ -10,12 +10,12 @@
 </style>
 
 <script>
+// 小程序入口文件
 import wepy from 'wepy'
 import 'wepy-async-function'
 
-
-export default class extends wepy.app {
-  config = {
+export default class extends wepy.app { // 该实例继承自wepy.app
+  config = { // 如果需要修改这里面的内容，需要适应微信提供的相关API
     pages: [
       'pages/index'
     ],
@@ -27,7 +27,7 @@ export default class extends wepy.app {
     }
   }
 
-  globalData = {
+  globalData = { // 全局数据对象
     userInfo: null
   }
 

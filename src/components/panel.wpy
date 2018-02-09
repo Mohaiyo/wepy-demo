@@ -22,7 +22,7 @@
       position: absolute;
     }
     .counterview {
-      margin-left: 120rpx;
+      margin-left: 150rpx;
     }
   }
 </style>

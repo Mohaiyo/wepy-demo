@@ -1,4 +1,5 @@
-<style lang="less">
+<style lang="scss">
+  $baseColoe:rgb(11, 124, 199);
   .userinfo {
     display: flex;
     flex-direction: column;
@@ -12,9 +13,10 @@
   }
 
   .userinfo-nickname {
-    color: #aaa;
+    color: $baseColoe;
   }
 </style>
+
 <template>
   <view class="container">
     <view class="userinfo" @tap="handleViewTap">
@@ -63,7 +65,7 @@
 
     <panel>
       <view class="title" slot="title">测试组件Repeat</view>
-      <repeat for="" index="index" item="item" key="key">
+      <repeat for="{{groupList}}" index="index" item="item" key="key">
         <group :grouplist="item" :indexa="index"></group>
       </repeat>
     </panel>
@@ -89,12 +91,11 @@
 
   console.log('moduleA ignored: ', moduleA) // => moduleA ignored: {}
 
-
-  export default class Index extends wepy.page {
-    config = {
-      navigationBarTitleText: 'test'
+  export default class Index extends wepy.page {  // 页面文件page.wpy中所声明的页面实例继承自wepy.page类
+    config = { // 页面配置对象
+      navigationBarTitleText: 'mohaiyo的小客栈'
     }
-    components = {
+    components = { // 页面引入的组件
       panel: Panel,
       counter1: Counter,
       counter2: Counter,
@@ -103,7 +104,7 @@
       toast: Toast
     }
 
-    mixins = [testMixin]
+    mixins = [testMixin]  // 混合事件 作用类似于vue的mixin 也是只要组件内引入mixin，而组件内又调用了mixin中的方法，就会先后触发组件以及minxi里面的方法 跟vue还是有区别的详情看https://cn.vuejs.org/v2/guide/mixins.html#%E5%9F%BA%E7%A1%80
 
     data = {
       mynum: 20,
@@ -166,6 +167,8 @@
       }
     }
 
+    // wxml事件处理函数对象，存放响应wxml中所捕获到的事件的函数，如bindtap、bindchange
+    // 注意，对于WePY中的methods属性，因为与Vue中的使用习惯不一致，非常容易造成误解，这里需要特别强调一下：WePY中的methods属性只能声明页面wxml标签的bind、catch事件，不能声明自定义方法，这与Vue中的用法是不一致的。
     methods = {
       plus () {
         this.mynum++
@@ -211,6 +214,7 @@
       }
     }
 
+    // WePY组件事件处理函数对象，存放响应组件之间通过$broadcast、$emit、$invoke所传递的事件的函数
     events = {
       'index-emit': (...args) => {
         let $event = args[args.length - 1]
@@ -218,6 +222,7 @@
       }
     }
 
+    // 小程序页面生命周期函数，onLoad/onReady
     onLoad() {
       let self = this
       this.$parent.getUserInfo(function (userInfo) {
