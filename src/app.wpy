@@ -17,13 +17,36 @@ import 'wepy-async-function'
 export default class extends wepy.app { // 该实例继承自wepy.app
   config = { // 如果需要修改这里面的内容，需要适应微信提供的相关API
     pages: [
-      'pages/index'
+      'pages/index',
+      'pages/message',
+      'pages/user'
     ],
     window: {
       backgroundTextStyle: 'light',
       navigationBarBackgroundColor: '#fff',
       navigationBarTitleText: 'WeChat',
-      navigationBarTextStyle: 'black'
+      navigationBarTextStyle: 'black',
+      enablePullDownRefresh: true
+    },
+    tabBar: {
+      color: '#999',
+      selectedColor: '#2695dc',
+      list: [{
+        pagePath: 'pages/index',
+        text: '题库',
+        iconPath: 'assets/img/index.png',
+        selectedIconPath: 'assets/img/index_hov.png'
+      }, {
+        pagePath: 'pages/message',
+        text: '消息',
+        iconPath: 'assets/img/index.png',
+        selectedIconPath: 'assets/img/index_hov.png'
+      }, {
+        pagePath: 'pages/user',
+        text: '我的',
+        iconPath: 'assets/img/index.png',
+        selectedIconPath: 'assets/img/index_hov.png'
+      }]
     }
   }
 

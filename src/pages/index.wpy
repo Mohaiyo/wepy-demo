@@ -93,7 +93,7 @@
 
   export default class Index extends wepy.page {  // 页面文件page.wpy中所声明的页面实例继承自wepy.page类
     config = { // 页面配置对象
-      navigationBarTitleText: 'mohaiyo的小客栈'
+      navigationBarTitleText: '城市定向'
     }
     components = { // 页面引入的组件
       panel: Panel,
